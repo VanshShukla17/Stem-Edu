@@ -285,3 +285,32 @@ How to use this file:
 
 - [x] **11.5 README and demo script**
   Done when: someone else can run the project from the README.
+
+---
+
+## Supabase Transition (PostgreSQL & pgvector Migration)
+
+Switching the core database layer from MongoDB to Supabase:
+
+- [ ] **S.1 Supabase Project Provisioning & SQL Schema Setup**
+  - Create Supabase project and execute PostgreSQL DDL schema (`users`, `subjects`, `chapters`, `lessons`, `questions`, `progress`, `diagrams`, `labs`, `test_results`, `lab_results`).
+  - Enable `vector` extension (`create extension if not exists vector;`) for Phase 2 RAG embeddings.
+  - Done when: all tables and relational foreign keys exist in Supabase.
+
+- [ ] **S.2 Backend Supabase Client Integration**
+  - Install `@supabase/supabase-js` in `backend/package.json`.
+  - Create `backend/utils/supabase.js` client initialized with `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`.
+  - Done when: backend successfully connects to Supabase.
+
+- [ ] **S.3 Controller Query Migration (Zero Frontend Regressions)**
+  - Adapt controllers (`authController`, `contentController`, `practiceController`, `summaryController`, `labController`, `adminController`) to query Supabase tables.
+  - Maintain exact REST API JSON response shapes so the React frontend requires 0 changes.
+  - Done when: all existing endpoints return matching payloads.
+
+- [ ] **S.4 Master Seed Script for Supabase**
+  - Port `backend/utils/seedData.js` to insert 4 subjects, 4 chapters, 16 lessons, 41+ MCQs, 3 diagrams, and virtual lab into Supabase idempotently.
+  - Done when: `npm run seed` fully populates a clean Supabase database.
+
+- [ ] **S.5 Automated Verification Suite**
+  - Run test suite validating all 11 PRD acceptance criteria against the Supabase backend.
+  - Done when: all tests pass with 0 errors.
