@@ -75,6 +75,10 @@ export const getSubjectChapters = (subjectId, params = {}) => {
 export const getChapterLessons = (chapterId) => apiRequest(`/chapters/${chapterId}/lessons`);
 export const getLesson = (lessonId) => apiRequest(`/lessons/${lessonId}`);
 
+// AI Summary with Gemini (Phase 7)
+export const getLessonSummary = (lessonId, language) =>
+  apiRequest(`/lessons/${lessonId}/summary`, { method: 'POST', body: { language } });
+
 // Progress Tracking
 export const completeLesson = (lessonId) => apiRequest(`/lessons/${lessonId}/complete`, { method: 'POST' });
 export const getProgress = () => apiRequest('/progress');
@@ -96,6 +100,7 @@ export default {
   getSubjectChapters,
   getChapterLessons,
   getLesson,
+  getLessonSummary,
   completeLesson,
   getProgress,
   getChapterTest,
@@ -103,4 +108,3 @@ export default {
   getResults,
   getResultById
 };
-

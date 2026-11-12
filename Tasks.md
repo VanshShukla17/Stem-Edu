@@ -172,27 +172,27 @@ How to use this file:
 
 ## Phase 7: AI summary with Gemini (**NEW: LLM API calls**)
 
-- [ ] **7.1 Learn the basics**
+- [x] **7.1 Learn the basics**
   Get a free Gemini API key; in a throwaway script, send a prompt and print the reply.
   Done when: you can explain request, response, tokens and rate limits in your own words.
 
-- [ ] **7.2 Backend summary route**
+- [x] **7.2 Backend summary route**
   `POST /api/lessons/:id/summary` calls Gemini with the lesson text.
   Done when: the key is in `.env` only and the route returns a summary.
 
-- [ ] **7.3 Prompt design**
+- [x] **7.3 Prompt design**
   Write a prompt for a simple, short, student-level summary in the chosen language.
   Done when: summaries for all 4 demo chapters read well.
 
-- [ ] **7.4 Cache summaries**
+- [x] **7.4 Cache summaries**
   Store the summary per lesson and language in MongoDB.
   Done when: the second request returns instantly without calling Gemini.
 
-- [ ] **7.5 Error handling**
+- [x] **7.5 Error handling**
   Handle timeout, rate limit and a too-long lesson.
   Done when: each case shows a friendly message and a retry button.
 
-- [ ] **7.6 Summarise button in the lesson reader**
+- [x] **7.6 Summarise button in the lesson reader**
   Bottom sheet with a loading state.
   Done when: the whole flow works end to end.
 

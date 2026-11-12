@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Loader2, Sparkles, Image as ImageIcon } from 'lucide-react';
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Loader2,
+  Sparkles,
+  Image as ImageIcon,
+  X,
+  RotateCcw,
+  Zap,
+  Globe
+} from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
@@ -15,6 +25,13 @@ export default function LessonReaderPage() {
   const [completed, setCompleted] = useState(false);
   const [progressInfo, setProgressInfo] = useState(null);
   const [error, setError] = useState('');
+
+  // AI Summary State (Phase 7)
+  const [showSummarySheet, setShowSummarySheet] = useState(false);
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [summaryData, setSummaryData] = useState(null);
+  const [summaryError, setSummaryError] = useState('');
+  const [summaryLang, setSummaryLang] = useState(user?.language || 'en');
 
   useEffect(() => {
     async function loadLesson() {
@@ -36,7 +53,7 @@ export default function LessonReaderPage() {
     loadLesson();
   }, [lessonId]);
 
-  // Task 5.3: Handle Mark as Complete
+  // Handle Mark as Complete (Task 5.3)
   const handleMarkComplete = async () => {
     try {
       setCompleting(true);
@@ -49,6 +66,27 @@ export default function LessonReaderPage() {
     } finally {
       setCompleting(false);
     }
+  };
+
+  // Handle AI Summarize Request (Task 7.6)
+  const handleFetchSummary = async (langToUse = summaryLang) => {
+    try {
+      setShowSummarySheet(true);
+      setSummaryLoading(true);
+      setSummaryError('');
+      const data = await api.getLessonSummary(lessonId, langToUse);
+      setSummaryData(data);
+    } catch (err) {
+      console.error('Error getting AI summary:', err);
+      setSummaryError(err.message || 'AI summary is temporarily unavailable. Please retry.');
+    } finally {
+      setSummaryLoading(false);
+    }
+  };
+
+  const handleLangToggle = (newLang) => {
+    setSummaryLang(newLang);
+    handleFetchSummary(newLang);
   };
 
   if (loading) {
@@ -111,12 +149,22 @@ export default function LessonReaderPage() {
           <span style={{ fontSize: '0.8rem', color: 'var(--color-primary)', fontWeight: '700', letterSpacing: '0.04em' }}>
             LESSON {lesson.lessonNumber || 1}
           </span>
+
+          {/* AI Summarise Action Trigger (Task 7.6) */}
           <button
             className="btn btn-secondary"
-            style={{ width: 'auto', padding: '6px 12px', fontSize: '0.8rem', color: 'var(--color-secondary)' }}
-            onClick={() => alert('AI Summary modal will open in Phase 7!')}
+            style={{
+              width: 'auto',
+              padding: '6px 14px',
+              fontSize: '0.82rem',
+              color: 'var(--color-secondary)',
+              borderColor: 'var(--color-secondary)',
+              backgroundColor: '#F5F3FF',
+              fontWeight: '600'
+            }}
+            onClick={() => handleFetchSummary(summaryLang)}
           >
-            <Sparkles size={14} /> Summarise with AI
+            <Sparkles size={15} /> Summarise with AI
           </button>
         </div>
 
@@ -224,7 +272,7 @@ export default function LessonReaderPage() {
           )}
         </div>
 
-        {/* Mark as Complete Footer Button (Task 5.3) */}
+        {/* Mark as Complete Footer Button */}
         <div style={{ marginTop: '32px', paddingTop: '16px', borderTop: '1px solid var(--color-border)' }}>
           {completed ? (
             <div
@@ -256,6 +304,169 @@ export default function LessonReaderPage() {
           )}
         </div>
       </article>
+
+      {/* AI Summary Mobile Bottom Sheet / Modal (Task 7.6) */}
+      {showSummarySheet && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 100,
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center'
+          }}
+          onClick={() => setShowSummarySheet(false)}
+        >
+          <div
+            style={{
+              backgroundColor: 'var(--color-surface)',
+              width: '100%',
+              maxWidth: '640px',
+              borderTopLeftRadius: '20px',
+              borderTopRightRadius: '20px',
+              padding: '24px 20px 32px 20px',
+              boxShadow: '0 -4px 20px rgba(0,0,0,0.15)',
+              maxHeight: '80vh',
+              overflowY: 'auto'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sheet Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ backgroundColor: '#F3E8FF', color: 'var(--color-secondary)', padding: '6px', borderRadius: '8px' }}>
+                  <Sparkles size={18} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800' }}>AI Revision Summary</h3>
+              </div>
+
+              <button
+                onClick={() => setShowSummarySheet(false)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)', padding: '4px' }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Language toggle within bottom sheet */}
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+              <button
+                type="button"
+                className={`pill-btn ${summaryLang === 'en' ? 'active' : ''}`}
+                style={{ padding: '6px 12px', fontSize: '0.82rem' }}
+                onClick={() => handleLangToggle('en')}
+              >
+                English
+              </button>
+              <button
+                type="button"
+                className={`pill-btn ${summaryLang === 'hi' ? 'active' : ''}`}
+                style={{ padding: '6px 12px', fontSize: '0.82rem' }}
+                onClick={() => handleLangToggle('hi')}
+              >
+                हिंदी (Hindi)
+              </button>
+            </div>
+
+            {/* Loading State */}
+            {summaryLoading && (
+              <div style={{ textAlign: 'center', padding: '36px 0', color: 'var(--color-secondary)' }}>
+                <Loader2 className="animate-spin" size={32} style={{ margin: '0 auto 12px auto' }} />
+                <p style={{ fontWeight: '600', fontSize: '0.95rem' }}>
+                  Making your revision summary with AI...
+                </p>
+                <span style={{ fontSize: '0.8rem', color: 'var(--color-muted)' }}>
+                  Extracting key definitions & formulas
+                </span>
+              </div>
+            )}
+
+            {/* Error State with Retry Button (Task 7.5) */}
+            {summaryError && !summaryLoading && (
+              <div style={{ padding: '16px 0' }}>
+                <div className="alert alert-error" style={{ marginBottom: '16px' }}>
+                  {summaryError}
+                </div>
+                <button
+                  onClick={() => handleFetchSummary(summaryLang)}
+                  className="btn btn-primary"
+                  style={{ backgroundColor: 'var(--color-secondary)' }}
+                >
+                  <RotateCcw size={16} /> Retry AI Summary
+                </button>
+              </div>
+            )}
+
+            {/* Summary Result State */}
+            {summaryData && !summaryLoading && !summaryError && (
+              <div>
+                {/* Cache / Generation Source Pill (Task 7.4) */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '14px' }}>
+                  {summaryData.isCached ? (
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        backgroundColor: 'var(--color-success-light)',
+                        color: 'var(--color-success)',
+                        padding: '4px 8px',
+                        borderRadius: '999px',
+                        fontSize: '0.75rem',
+                        fontWeight: '600'
+                      }}
+                    >
+                      <Zap size={12} /> Instant from Cache
+                    </span>
+                  ) : (
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        backgroundColor: '#F3E8FF',
+                        color: 'var(--color-secondary)',
+                        padding: '4px 8px',
+                        borderRadius: '999px',
+                        fontSize: '0.75rem',
+                        fontWeight: '600'
+                      }}
+                    >
+                      <Sparkles size={12} /> Generated with Gemini AI
+                    </span>
+                  )}
+                </div>
+
+                {/* Bullet Points Body */}
+                <div
+                  style={{
+                    backgroundColor: 'var(--color-background)',
+                    padding: '16px',
+                    borderRadius: 'var(--radius-md)',
+                    lineHeight: '1.7',
+                    fontSize: '0.94rem',
+                    whiteSpace: 'pre-line',
+                    color: 'var(--color-text)'
+                  }}
+                >
+                  {summaryData.summary}
+                </div>
+
+                <div style={{ marginTop: '20px' }}>
+                  <button
+                    onClick={() => setShowSummarySheet(false)}
+                    className="btn btn-secondary"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

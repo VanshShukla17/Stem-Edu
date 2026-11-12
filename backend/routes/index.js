@@ -5,6 +5,7 @@ const authRoutes = require('./authRoutes');
 const contentRoutes = require('./contentRoutes');
 const progressRoutes = require('./progressRoutes');
 const practiceRoutes = require('./practiceRoutes');
+const summaryRoutes = require('./summaryRoutes');
 
 const { getProfile, updateProfile } = require('../controllers/authController');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
@@ -29,6 +30,9 @@ router.use('/', progressRoutes);
 
 // Practice test & results routes (/api/chapters/:id/test, /api/results)
 router.use('/', practiceRoutes);
+
+// AI Summary route (/api/lessons/:id/summary)
+router.use('/', summaryRoutes);
 
 // Test routes for middleware verification
 router.get('/test-error', (req, res, next) => {
