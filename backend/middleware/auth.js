@@ -41,6 +41,33 @@ const requireAuth = async (req, res, next) => {
 };
 
 /**
+ * Optional Authentication Middleware
+ * Attaches user to req if valid token is provided, but does not block unauthenticated requests
+ */
+const optionalAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      if (token) {
+        try {
+          const decoded = verifyToken(token);
+          const user = await User.findById(decoded.id);
+          if (user) {
+            req.user = user;
+          }
+        } catch (_) {
+          // Token invalid; proceed as unauthenticated
+        }
+      }
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * Hand-written Authorization Middleware for Admin Access
  * Must be preceded by requireAuth
  */
@@ -58,5 +85,6 @@ const requireAdmin = (req, res, next) => {
 
 module.exports = {
   requireAuth,
+  optionalAuth,
   requireAdmin
 };

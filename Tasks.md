@@ -79,27 +79,27 @@ How to use this file:
 
 ## Phase 3: Content models and APIs (`backend/`)
 
-- [ ] **3.1 Subject and Chapter models + routes**
+- [x] **3.1 Subject and Chapter models + routes**
   `GET /api/subjects`, `GET /api/subjects/:id/chapters` (filtered by the student's board, class, language).
   Done when: a test chapter shows up only for the matching profile.
 
-- [ ] **3.2 Lesson model + routes**
+- [x] **3.2 Lesson model + routes**
   `GET /api/chapters/:id/lessons`, `GET /api/lessons/:id`.
   Done when: a lesson returns its title and content blocks (text, image).
 
-- [ ] **3.3 Progress tracking**
+- [x] **3.3 Progress tracking**
   `POST /api/lessons/:id/complete`, and chapter progress percentage.
   Done when: completing 2 of 4 lessons shows 50%.
 
-- [ ] **3.4 Question model + test routes**
+- [x] **3.4 Question model + test routes**
   `GET /api/chapters/:id/test` returns questions **without** correct answers.
   Done when: the response has no `correctIndex` field.
 
-- [ ] **3.5 Scoring route (hand-write)**
+- [x] **3.5 Scoring route (hand-write)**
   `POST /api/chapters/:id/test/submit` scores on the server and returns score plus explanations.
   Done when: a known set of answers gives the expected score.
 
-- [ ] **3.6 Result history**
+- [x] **3.6 Result history**
   Save each attempt in `TestResult`; `GET /api/results`.
   Done when: two attempts both appear, newest first.
 
