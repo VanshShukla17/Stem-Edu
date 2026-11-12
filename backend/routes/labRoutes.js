@@ -16,3 +16,4 @@ router.get('/:id', optionalAuth, labController.getLabByIdOrType);
 router.post('/:id/submit', requireAuth, labController.submitLabQuiz);
 
 module.exports = router;
+

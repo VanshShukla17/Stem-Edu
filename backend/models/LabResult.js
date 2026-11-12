@@ -58,3 +58,4 @@ const labResultSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('LabResult', labResultSchema);
+

@@ -107,6 +107,37 @@ export const submitLabQuiz = (id, submission) =>
   apiRequest(`/labs/${id}/submit`, { method: 'POST', body: submission });
 export const getMyLabResults = () => apiRequest('/labs/results/me');
 
+// Admin Operations (Phase 10)
+export const getAdminStats = () => apiRequest('/admin/stats');
+
+// Admin Subjects
+export const createSubject = (data) => apiRequest('/admin/subjects', { method: 'POST', body: data });
+export const updateSubject = (id, data) => apiRequest(`/admin/subjects/${id}`, { method: 'PUT', body: data });
+export const deleteSubject = (id, force = false) => apiRequest(`/admin/subjects/${id}${force ? '?force=true' : ''}`, { method: 'DELETE' });
+
+// Admin Chapters
+export const createChapter = (data) => apiRequest('/admin/chapters', { method: 'POST', body: data });
+export const updateChapter = (id, data) => apiRequest(`/admin/chapters/${id}`, { method: 'PUT', body: data });
+export const deleteChapter = (id, force = false) => apiRequest(`/admin/chapters/${id}${force ? '?force=true' : ''}`, { method: 'DELETE' });
+
+// Admin Lessons
+export const createLesson = (data) => apiRequest('/admin/lessons', { method: 'POST', body: data });
+export const updateLesson = (id, data) => apiRequest(`/admin/lessons/${id}`, { method: 'PUT', body: data });
+export const deleteLesson = (id, force = false) => apiRequest(`/admin/lessons/${id}${force ? '?force=true' : ''}`, { method: 'DELETE' });
+
+// Admin Questions
+export const getAdminQuestions = (params = {}) => {
+  const queryString = new URLSearchParams(params).toString();
+  return apiRequest(`/admin/questions${queryString ? `?${queryString}` : ''}`);
+};
+export const createQuestion = (data) => apiRequest('/admin/questions', { method: 'POST', body: data });
+export const updateQuestion = (id, data) => apiRequest(`/admin/questions/${id}`, { method: 'PUT', body: data });
+export const deleteQuestion = (id) => apiRequest(`/admin/questions/${id}`, { method: 'DELETE' });
+
+// Admin Users
+export const getAdminUsers = () => apiRequest('/admin/users');
+export const updateUserRole = (id, role) => apiRequest(`/admin/users/${id}/role`, { method: 'PUT', body: { role } });
+
 export default {
   getHealth,
   signup,
@@ -129,5 +160,21 @@ export default {
   getLabs,
   getLab,
   submitLabQuiz,
-  getMyLabResults
+  getMyLabResults,
+  getAdminStats,
+  createSubject,
+  updateSubject,
+  deleteSubject,
+  createChapter,
+  updateChapter,
+  deleteChapter,
+  createLesson,
+  updateLesson,
+  deleteLesson,
+  getAdminQuestions,
+  createQuestion,
+  updateQuestion,
+  deleteQuestion,
+  getAdminUsers,
+  updateUserRole
 };

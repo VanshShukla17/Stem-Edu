@@ -18,6 +18,12 @@ import ResultsPage from './pages/ResultsPage';
 import VirtualLabPage from './pages/VirtualLabPage';
 import ProfilePage from './pages/ProfilePage';
 
+// Admin Pages (Phase 10)
+import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import AdminContentPage from './pages/admin/AdminContentPage';
+import AdminQuestionsPage from './pages/admin/AdminQuestionsPage';
+import AdminUsersPage from './pages/admin/AdminUsersPage';
+
 export default function App() {
   return (
     <Routes>
@@ -43,6 +49,20 @@ export default function App() {
         <Route path="/labs" element={<VirtualLabPage />} />
         <Route path="/labs/:labId" element={<VirtualLabPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+      </Route>
+
+      {/* Role-Gated Admin Pages (role: 'admin') */}
+      <Route
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/admin/content" element={<AdminContentPage />} />
+        <Route path="/admin/questions" element={<AdminQuestionsPage />} />
+        <Route path="/admin/users" element={<AdminUsersPage />} />
       </Route>
 
       {/* Catch-all route */}

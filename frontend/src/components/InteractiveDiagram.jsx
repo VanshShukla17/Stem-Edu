@@ -267,3 +267,4 @@ export default function InteractiveDiagram({ diagramData, diagramId, subjectCode
     </div>
   );
 }
+

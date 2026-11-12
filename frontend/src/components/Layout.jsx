@@ -15,6 +15,22 @@ export default function Layout() {
           <span>STEM Edu</span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {user?.role === 'admin' && (
+            <Link
+              to="/admin"
+              style={{
+                fontSize: '0.75rem',
+                backgroundColor: '#DC2626',
+                color: '#FFFFFF',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                fontWeight: '700',
+                textDecoration: 'none'
+              }}
+            >
+              Admin
+            </Link>
+          )}
           {user && (
             <span
               style={{

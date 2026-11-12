@@ -251,15 +251,15 @@ How to use this file:
 
 ## Phase 10: Admin (hand-write)
 
-- [ ] **10.1 Admin routes in the backend**
+- [x] **10.1 Admin routes in the backend**
   CRUD for subjects, chapters, lessons, questions, diagrams (protected by `requireAdmin`).
   Done when: a non-admin gets 403.
 
-- [ ] **10.2 Admin pages**
+- [x] **10.2 Admin pages**
   Simple forms to add and edit content.
   Done when: a new chapter you add shows up for students.
 
-- [ ] **10.3 Delete safely**
+- [x] **10.3 Delete safely**
   Confirm before deleting content that has student progress.
   Done when: progress data stays consistent after a delete.
 

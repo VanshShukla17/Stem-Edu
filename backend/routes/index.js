@@ -8,6 +8,7 @@ const practiceRoutes = require('./practiceRoutes');
 const summaryRoutes = require('./summaryRoutes');
 const diagramRoutes = require('./diagramRoutes');
 const labRoutes = require('./labRoutes');
+const adminRoutes = require('./adminRoutes');
 
 const { getProfile, updateProfile } = require('../controllers/authController');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
@@ -41,6 +42,9 @@ router.use('/', diagramRoutes);
 
 // Virtual Labs route (/api/labs)
 router.use('/labs', labRoutes);
+
+// Admin Content Management routes (/api/admin/*)
+router.use('/admin', adminRoutes);
 
 // Test routes for middleware verification
 router.get('/test-error', (req, res, next) => {
