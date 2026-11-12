@@ -7,3 +7,4 @@ const { optionalAuth } = require('../middleware/auth');
 router.post('/lessons/:id/summary', optionalAuth, getLessonSummary);
 
 module.exports = router;
+

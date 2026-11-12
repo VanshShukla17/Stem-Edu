@@ -56,3 +56,4 @@ const getLessonSummary = async (req, res, next) => {
 module.exports = {
   getLessonSummary
 };
+

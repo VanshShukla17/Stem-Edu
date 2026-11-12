@@ -3,7 +3,8 @@
  * Verifies Tasks 7.1 to 7.6 against exact "Done when" requirements.
  */
 const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path');
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 const mongoose = require('mongoose');
 const Lesson = require('./models/Lesson');
@@ -160,3 +161,4 @@ async function runPhase7Tests() {
 }
 
 runPhase7Tests();
+

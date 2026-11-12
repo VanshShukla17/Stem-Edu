@@ -75,6 +75,13 @@ export const getSubjectChapters = (subjectId, params = {}) => {
 export const getChapterLessons = (chapterId) => apiRequest(`/chapters/${chapterId}/lessons`);
 export const getLesson = (lessonId) => apiRequest(`/lessons/${lessonId}`);
 
+// Interactive Diagrams (Phase 8)
+export const getDiagrams = (subject) => {
+  const query = subject ? `?subject=${subject}` : '';
+  return apiRequest(`/diagrams${query}`);
+};
+export const getDiagramById = (id) => apiRequest(`/diagrams/${id}`);
+
 // AI Summary with Gemini (Phase 7)
 export const getLessonSummary = (lessonId, language) =>
   apiRequest(`/lessons/${lessonId}/summary`, { method: 'POST', body: { language } });
@@ -100,6 +107,8 @@ export default {
   getSubjectChapters,
   getChapterLessons,
   getLesson,
+  getDiagrams,
+  getDiagramById,
   getLessonSummary,
   completeLesson,
   getProgress,

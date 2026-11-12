@@ -8,11 +8,11 @@ import {
   Image as ImageIcon,
   X,
   RotateCcw,
-  Zap,
-  Globe
+  Zap
 } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import InteractiveDiagram from '../components/InteractiveDiagram';
 
 export default function LessonReaderPage() {
   const { lessonId } = useParams();
@@ -150,7 +150,7 @@ export default function LessonReaderPage() {
             LESSON {lesson.lessonNumber || 1}
           </span>
 
-          {/* AI Summarise Action Trigger (Task 7.6) */}
+          {/* AI Summarise Action Trigger */}
           <button
             className="btn btn-secondary"
             style={{
@@ -172,7 +172,7 @@ export default function LessonReaderPage() {
           {title}
         </h1>
 
-        {/* Content Blocks: Renders text, formula, and image blocks (Task 5.3) */}
+        {/* Content Blocks: Renders text, formula, image, and diagram blocks (Task 8.7) */}
         <div style={{ display: 'grid', gap: '16px', lineHeight: '1.7', fontSize: '1rem' }}>
           {lesson.contentBlocks && lesson.contentBlocks.length > 0 ? (
             lesson.contentBlocks.map((block, idx) => {
@@ -247,6 +247,20 @@ export default function LessonReaderPage() {
                 );
               }
 
+              {/* Task 8.7: Embedded Interactive Diagram Block */}
+              if (block.type === 'diagram') {
+                return (
+                  <div key={idx} style={{ margin: '8px 0' }}>
+                    {textContent && (
+                      <div style={{ fontWeight: '600', fontSize: '0.95rem', marginBottom: '6px', color: 'var(--color-primary)' }}>
+                        {textContent}
+                      </div>
+                    )}
+                    <InteractiveDiagram diagramId={block.diagramId || lesson.diagramId} />
+                  </div>
+                );
+              }
+
               if (block.type === 'callout') {
                 return (
                   <div
@@ -269,6 +283,11 @@ export default function LessonReaderPage() {
             })
           ) : (
             <p>Lesson content will appear here.</p>
+          )}
+
+          {/* Standalone linked diagram fallback if present and not embedded as block */}
+          {lesson.diagramId && !lesson.contentBlocks?.some(b => b.type === 'diagram') && (
+            <InteractiveDiagram diagramId={lesson.diagramId} />
           )}
         </div>
 
@@ -305,7 +324,7 @@ export default function LessonReaderPage() {
         </div>
       </article>
 
-      {/* AI Summary Mobile Bottom Sheet / Modal (Task 7.6) */}
+      {/* AI Summary Bottom Sheet */}
       {showSummarySheet && (
         <div
           style={{
@@ -383,7 +402,7 @@ export default function LessonReaderPage() {
               </div>
             )}
 
-            {/* Error State with Retry Button (Task 7.5) */}
+            {/* Error State with Retry Button */}
             {summaryError && !summaryLoading && (
               <div style={{ padding: '16px 0' }}>
                 <div className="alert alert-error" style={{ marginBottom: '16px' }}>
@@ -402,7 +421,6 @@ export default function LessonReaderPage() {
             {/* Summary Result State */}
             {summaryData && !summaryLoading && !summaryError && (
               <div>
-                {/* Cache / Generation Source Pill (Task 7.4) */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '14px' }}>
                   {summaryData.isCached ? (
                     <span
@@ -439,7 +457,6 @@ export default function LessonReaderPage() {
                   )}
                 </div>
 
-                {/* Bullet Points Body */}
                 <div
                   style={{
                     backgroundColor: 'var(--color-background)',

@@ -200,24 +200,24 @@ How to use this file:
 
 ## Phase 8: Interactive diagrams (**NEW: SVG / canvas interaction**)
 
-- [ ] **8.1 Learn SVG basics**
+- [x] **8.1 Learn SVG basics**
   Practice: draw shapes, add click handlers, change colours on hover or tap.
   Done when: you can make a shape that reacts to a tap.
 
-- [ ] **8.2 Diagram data format**
+- [x] **8.2 Diagram data format**
   Define a JSON format: parts, labels, coordinates, explanations. Store it in the `Diagram` collection.
   Done when: one diagram is described fully in JSON.
 
-- [ ] **8.3 Diagram component**
+- [x] **8.3 Diagram component**
   A React component that renders any diagram from JSON and shows an explanation panel on tap.
   Done when: tapping a part shows its explanation.
 
-- [ ] **8.4 Biology diagram**: plant or animal cell.
-- [ ] **8.5 Chemistry diagram**: periodic table (check public-apis/public-apis for free element data).
-- [ ] **8.6 Physics diagram**: a simple circuit or the lens ray diagram.
+- [x] **8.4 Biology diagram**: plant or animal cell.
+- [x] **8.5 Chemistry diagram**: periodic table (check public-apis/public-apis for free element data).
+- [x] **8.6 Physics diagram**: a simple circuit or the lens ray diagram.
   Done when (8.4 to 8.6): each works by touch on a phone.
 
-- [ ] **8.7 Embed diagrams in lessons**
+- [x] **8.7 Embed diagrams in lessons**
   Done when: a lesson can include a diagram block.
 
 ---

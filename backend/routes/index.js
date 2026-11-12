@@ -6,6 +6,7 @@ const contentRoutes = require('./contentRoutes');
 const progressRoutes = require('./progressRoutes');
 const practiceRoutes = require('./practiceRoutes');
 const summaryRoutes = require('./summaryRoutes');
+const diagramRoutes = require('./diagramRoutes');
 
 const { getProfile, updateProfile } = require('../controllers/authController');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
@@ -33,6 +34,9 @@ router.use('/', practiceRoutes);
 
 // AI Summary route (/api/lessons/:id/summary)
 router.use('/', summaryRoutes);
+
+// Interactive Diagrams route (/api/diagrams)
+router.use('/', diagramRoutes);
 
 // Test routes for middleware verification
 router.get('/test-error', (req, res, next) => {
