@@ -107,26 +107,26 @@ How to use this file:
 
 ## Phase 4: Frontend foundation (`frontend/`)
 
-- [ ] **4.1 Create the React app**
+- [x] **4.1 Create the React app**
   Use Vite + React; install `react-router-dom`.
   Done when: the starter page loads.
 
-- [ ] **4.2 Folder structure and routes**
+- [x] **4.2 Folder structure and routes**
   Create `pages/`, `components/`, `services/`, `context/`; set up the routes from PRD section 7.
   Done when: each route shows a placeholder page.
 
-- [ ] **4.3 API service layer**
+- [x] **4.3 API service layer**
   One file that wraps `fetch` and attaches the token.
   Done when: the health route is called from the frontend.
 
-- [ ] **4.4 Auth context**
+- [x] **4.4 Auth context**
   Hand-write login state, token storage, and a `ProtectedRoute` component.
   Done when: opening `/dashboard` while logged out redirects to `/login`.
 
-- [ ] **4.5 Signup and login pages**
+- [x] **4.5 Signup and login pages**
   Done when: a new user can sign up, choose class / board / language, and land on the dashboard.
 
-- [ ] **4.6 Mobile-first layout**
+- [x] **4.6 Mobile-first layout**
   Bottom tab bar (Home / Learn / Practice / Profile), colour tokens from PRD section 6.
   Done when: the layout looks right at 375px width.
 
@@ -285,63 +285,3 @@ How to use this file:
 
 - [ ] **11.5 README and demo script**
   Done when: someone else can run the project from the README.
-
----
-
-## Phase 2 preview (February: RAG / LLM)
-
-Not for now. Break these into small tasks when v1 is done.
-
-- [ ] **P2.1** Study Arindam200/awesome-ai-apps (RAG, agent and MCP examples) and build one tiny RAG demo on a single PDF. **NEW**
-- [ ] **P2.2** Chunking, embeddings and a vector database. **NEW**
-- [ ] **P2.3** Upload notes and answer questions from them (user-based RAG).
-- [ ] **P2.4** Chotu: persona prompt plus conversation memory. **NEW**
-- [ ] **P2.5** 24/7 doubt solver using the student's profile and notes as context.
-- [ ] **P2.6** Handwritten notes through OCR. **NEW**
-- [ ] **P2.7** Multi-board and multi-language content.
-
----
-
-# What is tough, and what is different from MERN
-
-## The big difference
-
-Plain MERN (what your course teaches) is **CRUD and deterministic**: the same request always gives the same result, and bugs are logical and repeatable. This project adds three kinds of work that are not like that:
-
-1. **Probabilistic outputs (LLMs, RAG, OCR):** the answer can be wrong or different each time. You test quality, not just "does it run".
-2. **Real-time graphics (Three.js):** a render loop, 3D maths and device performance, not request and response.
-3. **Browser-level engineering (offline, PWA):** caching and sync problems that live in the browser, not the server.
-
-## Ranked by difficulty (hardest first)
-
-| Rank | Feature | Why it is hard | How it differs from MERN |
-|---|---|---|---|
-| 1 | **Sign language** | Needs computer vision and ML models, training data, and accuracy for real use | Almost nothing from MERN applies; it is an ML research project |
-| 2 | **User-based RAG pipeline** | Chunking, embeddings, vector search, retrieval quality, and avoiding made-up answers | You tune quality instead of fixing bugs; most examples are in Python, not Node |
-| 3 | **3D virtual labs** | 3D maths, the render loop, performance on cheap phones, and building each experiment's physics, chemistry or biology logic | No server involved; you think in scenes, cameras and frames |
-| 4 | **Offline mode (PWA)** | Service workers, cache invalidation, local storage, and syncing results later | Bugs depend on browser state, which is hard to reproduce |
-| 5 | **Chotu with memory** | Deciding what to store, how much context to send, cost and token limits, keeping answers safe and in syllabus | Prompt design and context management instead of routes and schemas |
-| 6 | **Handwriting OCR** | Handwriting varies a lot; accuracy is limited, especially in regional scripts | Depends on a third-party model; you handle imperfect output |
-| 7 | **Pre-generated AI video** | Quality control, cost and review of every video; it is mostly a content pipeline | Tool use more than coding |
-| 8 | **SaaS (multi-tenant + payments)** | Data isolation between schools, billing, roles | Same stack, but design mistakes here are costly |
-| 9 | **Multi-board + multi-language** | Mostly a **content** problem: translating and checking STEM terms, and designing data so content is not duplicated | Easy to code, hard to do well |
-| 10 | **Interactive diagrams** | SVG coordinates and touch handling take patience, and drawing each diagram takes time | Frontend only, but more fiddly than normal UI |
-| 11 | **Gemini summary** | Rate limits, prompts and caching | Closest to MERN: it is still one API route |
-
-## Non-code work that is also tough
-
-- **Content.** Writing correct lessons, MCQs and explanations for four subjects takes more time than most code. Start with just 4 chapters.
-- **Scope.** The feature list is huge. The biggest risk is starting too many features. Finish Phases 0 to 6 first, then add the rest one at a time.
-- **Free-tier limits.** Gemini, MongoDB Atlas, hosting and vector databases all have limits. Plan caching early.
-- **Low-end devices.** Everything must work on an old phone with a weak connection, so test on one.
-
-## Suggested learning order (after the MERN course)
-
-1. Gemini API (small, closest to what you know)
-2. SVG interaction
-3. Three.js
-4. RAG (with awesome-ai-apps as reference)
-5. Chotu memory
-6. OCR
-7. PWA and offline
-8. Everything else, only if time remains

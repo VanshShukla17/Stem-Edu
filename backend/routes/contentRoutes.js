@@ -19,3 +19,4 @@ router.get('/chapters/:id/lessons', optionalAuth, getChapterLessons);
 router.get('/lessons/:id', optionalAuth, getLessonById);
 
 module.exports = router;
+

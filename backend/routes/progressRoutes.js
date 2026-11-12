@@ -10,3 +10,4 @@ router.post('/lessons/:id/complete', requireAuth, completeLesson);
 router.get('/progress', requireAuth, getProgress);
 
 module.exports = router;
+

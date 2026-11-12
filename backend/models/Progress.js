@@ -57,3 +57,4 @@ progressSchema.index({ userId: 1, chapterId: 1 }, { unique: true });
 const Progress = mongoose.model('Progress', progressSchema);
 
 module.exports = Progress;
+

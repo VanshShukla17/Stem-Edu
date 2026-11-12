@@ -81,3 +81,4 @@ testResultSchema.index({ userId: 1, createdAt: -1 });
 const TestResult = mongoose.model('TestResult', testResultSchema);
 
 module.exports = TestResult;
+

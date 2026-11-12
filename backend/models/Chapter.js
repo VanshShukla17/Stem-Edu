@@ -73,3 +73,4 @@ chapterSchema.index({ subjectId: 1, board: 1, classLevel: 1 });
 const Chapter = mongoose.model('Chapter', chapterSchema);
 
 module.exports = Chapter;
+

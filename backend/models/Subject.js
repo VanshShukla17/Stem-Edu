@@ -67,3 +67,4 @@ subjectSchema.index({ board: 1, classLevel: 1 });
 const Subject = mongoose.model('Subject', subjectSchema);
 
 module.exports = Subject;
+

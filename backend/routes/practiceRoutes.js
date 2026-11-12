@@ -17,3 +17,4 @@ router.get('/results', requireAuth, getResults);
 router.get('/results/:id', requireAuth, getResultById);
 
 module.exports = router;
+

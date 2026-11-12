@@ -86,3 +86,4 @@ lessonSchema.index({ chapterId: 1, order: 1 });
 const Lesson = mongoose.model('Lesson', lessonSchema);
 
 module.exports = Lesson;
+
