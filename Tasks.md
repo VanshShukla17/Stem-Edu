@@ -11,19 +11,19 @@ How to use this file:
 
 ## Phase 0: Setup
 
-- [ ] **0.1 Create the project folder and Git repo**
+- [x] **0.1 Create the project folder and Git repo**
   Make `project-name/` with `frontend/`, `backend/`, `PRD.md`, `Tasks.md`, and a `.gitignore` (node_modules, .env).
   Done when: the repo is pushed to GitHub with this structure.
 
-- [ ] **0.2 Write Design.md (part 1: pages and data models)**
+- [x] **0.2 Write Design.md (part 1: pages and data models)**
   List every page, and the MongoDB collections with their fields: `User`, `Subject`, `Chapter`, `Lesson`, `Question`, `TestResult`, `Progress`, `Diagram`, `Lab`.
   Done when: every field has a type and a one-line purpose.
 
-- [ ] **0.3 Write Design.md (part 2: API routes)**
+- [x] **0.3 Write Design.md (part 2: API routes)**
   List every route with method, path, who can call it, request and response shape.
   Done when: each MVP feature in PRD.md has the routes it needs.
 
-- [ ] **0.4 Decide the v1 content scope**
+- [x] **0.4 Decide the v1 content scope**
   Pick the board, classes, language, and one chapter per subject (4 chapters total).
   Done when: the four chapter names are written in Design.md.
 
