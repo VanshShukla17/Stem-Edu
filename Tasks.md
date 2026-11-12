@@ -134,18 +134,18 @@ How to use this file:
 
 ## Phase 5: Lessons UI
 
-- [ ] **5.1 Subjects page**
+- [x] **5.1 Subjects page**
   Done when: the four subjects show as cards.
 
-- [ ] **5.2 Chapter page**
+- [x] **5.2 Chapter page**
   Lessons list with a progress bar.
   Done when: completed lessons show a tick.
 
-- [ ] **5.3 Lesson reader**
+- [x] **5.3 Lesson reader**
   Render text and image blocks; "Mark as complete" button.
   Done when: marking complete updates the progress bar.
 
-- [ ] **5.4 Dashboard**
+- [x] **5.4 Dashboard**
   Continue learning, progress per subject, recent scores.
   Done when: it reflects real data from the API.
 
