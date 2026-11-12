@@ -153,18 +153,18 @@ How to use this file:
 
 ## Phase 6: MCQ practice
 
-- [ ] **6.1 Test page**
+- [x] **6.1 Test page**
   Show one question at a time with options.
   Done when: you can move through all questions.
 
-- [ ] **6.2 Submit and result screen**
+- [x] **6.2 Submit and result screen**
   Send answers, show score and an explanation for each question.
   Done when: right and wrong answers are marked with an icon **and** text (not colour alone).
 
-- [ ] **6.3 Results history page**
+- [x] **6.3 Results history page**
   Done when: past attempts are listed.
 
-- [ ] **6.4 Handle edge cases**
+- [x] **6.4 Handle edge cases**
   Empty chapter (no questions), leaving the test midway.
   Done when: neither case shows an error screen.
 

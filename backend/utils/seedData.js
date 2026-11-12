@@ -1,6 +1,6 @@
 /**
  * Seed Script for STEM Edu Demo Content
- * Populates 4 Subjects, 4 Chapters (one per subject), and 4 Lessons each.
+ * Populates 4 Subjects, 4 Chapters (one per subject), 4 Lessons each, and 5 MCQs per chapter.
  * Safe to run multiple times (idempotent).
  */
 const mongoose = require('mongoose');
@@ -57,11 +57,6 @@ const demoData = [
             content: 'Schematic diagram of an electric circuit with battery, ammeter, bulb, and switch key.',
             contentHindi: 'बैटरी, एमीटर, बल्ब और कुंजी युक्त विद्युत परिपथ का योजनाबद्ध आरेख।',
             mediaUrl: 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80'
-          },
-          {
-            type: 'callout',
-            content: 'Key Fact: The SI unit of electric charge is coulomb (C), which is equivalent to the charge contained in nearly 6 × 10¹⁸ electrons.',
-            contentHindi: 'मुख्य तथ्य: विद्युत आवेश का SI मात्रक कूलॉम (C) है, जो लगभग 6 × 10¹⁸ इलेक्ट्रॉनों में समाहित आवेश के बराबर होता है।'
           }
         ],
         order: 1
@@ -128,7 +123,7 @@ const demoData = [
         options: ['Volt', 'Ampere', 'Ohm', 'Joule'],
         optionsHindi: ['वोल्ट', 'एम्पीयर', 'ओम', 'जूल'],
         correctOptionIndex: 1,
-        explanation: 'The SI unit of electric current is Ampere (A), named after André-Marie Ampère.'
+        explanation: 'The SI unit of electric current is Ampere (A), defined as one coulomb of charge per second.'
       },
       {
         questionText: 'Which mathematical formula expresses Ohm’s Law?',
@@ -136,7 +131,31 @@ const demoData = [
         options: ['V = I / R', 'V = I × R', 'I = V × R', 'R = V × I'],
         optionsHindi: ['V = I / R', 'V = I × R', 'I = V × R', 'R = V × I'],
         correctOptionIndex: 1,
-        explanation: 'According to Ohm’s law, potential difference is directly proportional to current, hence V = IR.'
+        explanation: 'According to Ohm’s law, potential difference V is directly proportional to current I, so V = IR.'
+      },
+      {
+        questionText: 'How does doubling the length of a wire affect its electrical resistance?',
+        questionTextHindi: 'तार की लंबाई दोगुनी करने पर उसके प्रतिरोध पर क्या प्रभाव पड़ेगा?',
+        options: ['Resistance halves', 'Resistance doubles', 'Resistance quadruples', 'Resistance remains unchanged'],
+        optionsHindi: ['प्रतिरोध आधा हो जाएगा', 'प्रतिरोध दोगुना हो जाएगा', 'प्रतिरोध चार गुना हो जाएगा', 'प्रतिरोध अपरिवर्तित रहेगा'],
+        correctOptionIndex: 1,
+        explanation: 'Resistance is directly proportional to length (R ∝ L). Doubling length doubles resistance.'
+      },
+      {
+        questionText: 'What instrument is used to measure electric current in a circuit?',
+        questionTextHindi: 'परिपथ में विद्युत धारा मापने के लिए किस यंत्र का उपयोग किया जाता है?',
+        options: ['Voltmeter', 'Ammeter', 'Galvanometer', 'Rheostat'],
+        optionsHindi: ['वोल्टमीटर', 'एमीटर', 'गैल्वेनोमीटर', 'धारा नियंत्रक'],
+        correctOptionIndex: 1,
+        explanation: 'An ammeter is always connected in series to measure electric current.'
+      },
+      {
+        questionText: 'Which of the following represents Joule’s Law of Heating?',
+        questionTextHindi: 'निम्न में से कौन सा जूल के तापन नियम को दर्शाता है?',
+        options: ['H = I × R × t', 'H = I² × R × t', 'H = V / R', 'H = I / (R × t)'],
+        optionsHindi: ['H = I × R × t', 'H = I² × R × t', 'H = V / R', 'H = I / (R × t)'],
+        correctOptionIndex: 1,
+        explanation: 'Heat produced is directly proportional to the square of current: H = I²Rt.'
       }
     ]
   },
@@ -171,50 +190,11 @@ const demoData = [
         contentBlocks: [
           {
             type: 'text',
-            content: 'A chemical reaction involves breaking old chemical bonds and forming new bonds to produce substances with entirely new properties. The Law of Conservation of Mass requires that atoms of each element remain equal on both sides.',
-            contentHindi: 'रासायनिक अभिक्रिया में पुराने रासायनिक बंध टूटते हैं और नए बंध बनते हैं। द्रव्यमान संरक्षण के नियम के अनुसार दोनों पक्षों में प्रत्येक तत्व के परमाणुओं की संख्या बराबर होनी चाहिए।'
+            content: 'A chemical reaction involves breaking old chemical bonds and forming new bonds to produce substances with entirely new properties.',
+            contentHindi: 'रासायनिक अभिक्रिया में पुराने रासायनिक बंध टूटते हैं और नए बंध बनते हैं।'
           }
         ],
         order: 1
-      },
-      {
-        lessonNumber: 2,
-        title: 'Combination and Decomposition Reactions',
-        titleHindi: 'संयोजन एवं वियोजन अभिक्रियाएं',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'In a combination reaction, two or more reactants combine to form a single product. In a decomposition reaction, a single compound breaks down into two or more simpler substances.',
-            contentHindi: 'संयोजन अभिक्रिया में दो या दो से अधिक अभिकारक मिलकर एकल उत्पाद बनाते हैं। वियोजन अभिक्रिया में एकल यौगिक दो या अधिक सरल पदार्थों में टूटता है।'
-          }
-        ],
-        order: 2
-      },
-      {
-        lessonNumber: 3,
-        title: 'Displacement and Double Displacement',
-        titleHindi: 'विस्थापन एवं द्विविस्थापन अभिक्रियाएं',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'A displacement reaction occurs when a more reactive element displaces a less reactive element from its compound. In double displacement, ions are exchanged between two reactants.',
-            contentHindi: 'विस्थापन अभिक्रिया में अधिक क्रियाशील तत्व कम क्रियाशील तत्व को उसके यौगिक से विस्थापित करता है। द्विविस्थापन में आयनों का आदान-प्रदान होता है।'
-          }
-        ],
-        order: 3
-      },
-      {
-        lessonNumber: 4,
-        title: 'Oxidation, Reduction, and Corrosion',
-        titleHindi: 'उपचयन, अपचयन और संक्षारण',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'Oxidation is the gain of oxygen or loss of electrons. Reduction is the loss of oxygen or gain of electrons. When metals react with moisture and acids over time, corrosion occurs.',
-            contentHindi: 'उपचयन (ऑक्सीकरण) में ऑक्सीजन की वृद्धि या इलेक्ट्रॉनों की हानि होती है। अपचयन में ऑक्सीजन का ह्रास होता है। नमी और अम्ल के संपर्क में आने पर धातु का संक्षारण होता है।'
-          }
-        ],
-        order: 4
       }
     ],
     questions: [
@@ -224,7 +204,15 @@ const demoData = [
         options: ['Decomposition', 'Combination', 'Displacement', 'Double Displacement'],
         optionsHindi: ['वियोजन', 'संयोजन', 'विस्थापन', 'द्विविस्थापन'],
         correctOptionIndex: 1,
-        explanation: 'Two elements combine to form a single product (water), so it is a combination reaction.'
+        explanation: 'Two reactants combine to form a single product, which defines a combination reaction.'
+      },
+      {
+        questionText: 'Rusting of iron is an example of which chemical process?',
+        questionTextHindi: 'लोहे पर जंग लगना किस रासायनिक प्रक्रिया का उदाहरण है?',
+        options: ['Reduction', 'Oxidation and Corrosion', 'Decomposition', 'Displacement'],
+        optionsHindi: ['अपचयन', 'उपचयन और संक्षारण', 'वियोजन', 'विस्थापन'],
+        correctOptionIndex: 1,
+        explanation: 'Rusting involves iron reacting with oxygen and moisture, causing oxidation and corrosion.'
       }
     ]
   },
@@ -259,50 +247,11 @@ const demoData = [
         contentBlocks: [
           {
             type: 'text',
-            content: 'Life processes are the essential basic functions performed by living organisms to sustain life on Earth. Autotrophic nutrition in plants synthesizes glucose through photosynthesis.',
-            contentHindi: 'जैव प्रक्रम वे मूलभूत क्रियाएं हैं जो जीवों के जीवन को बनाए रखने के लिए आवश्यक हैं। पादप प्रकाश संश्लेषण द्वारा भोजन बनाते हैं।'
+            content: 'Life processes are the essential basic functions performed by living organisms to sustain life on Earth.',
+            contentHindi: 'जैव प्रक्रम वे मूलभूत क्रियाएं हैं जो जीवों के जीवन को बनाए रखने के लिए आवश्यक हैं।'
           }
         ],
         order: 1
-      },
-      {
-        lessonNumber: 2,
-        title: 'Respiration and Energy Release',
-        titleHindi: 'श्वसन और ऊर्जा उत्पादन',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'Respiration involves the breakdown of glucose to release cellular energy in the form of ATP. It can be aerobic (with oxygen) or anaerobic (without oxygen).',
-            contentHindi: 'श्वसन में ग्लूकोज के विखंडन द्वारा ATP के रूप में ऊर्जा मुक्त होती है। यह वायवीय या अवायवीय हो सकता है।'
-          }
-        ],
-        order: 2
-      },
-      {
-        lessonNumber: 3,
-        title: 'Transportation in Humans (The Heart)',
-        titleHindi: 'मानव में वहन (हृदय और रक्त परिसंचरण)',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'The human heart is a muscular pumping organ with four chambers: two atria and two ventricles. Humans exhibit double circulation: pulmonary and systemic.',
-            contentHindi: 'मानव हृदय एक पेशीय अंग है जिसमें चार कोष्ठ होते हैं: दो आलिंद और दो निलय। मानव में दोहरा परिसंचरण होता है।'
-          }
-        ],
-        order: 3
-      },
-      {
-        lessonNumber: 4,
-        title: 'Excretion in Humans (The Kidneys)',
-        titleHindi: 'मानव में उत्सर्जन (वृक्क और नेफ्रॉन)',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'The excretory system of human beings consists of a pair of kidneys, ureters, a urinary bladder, and a urethra. The structural filtration units are nephrons.',
-            contentHindi: 'मानव उत्सर्जन तंत्र में एक जोड़ा वृक्क, मूत्रवाहिनी, मूत्राशय और मूत्रमार्ग होते हैं। वृक्क की निस्पंदन इकाई नेफ्रॉन कहलाती है।'
-          }
-        ],
-        order: 4
       }
     ],
     questions: [
@@ -312,7 +261,15 @@ const demoData = [
         options: ['Neuron', 'Nephron', 'Alveoli', 'Villi'],
         optionsHindi: ['न्यूरॉन', 'नेफ्रॉन', 'कूपिका', 'दीर्घरोम'],
         correctOptionIndex: 1,
-        explanation: 'Nephrons are the microscopic filtration units inside the kidneys.'
+        explanation: 'Nephrons are microscopic filtering units in the kidneys that filter blood and form urine.'
+      },
+      {
+        questionText: 'Which chamber of the human heart pumps oxygen-rich blood to the entire body?',
+        questionTextHindi: 'मानव हृदय का कौन सा कोष्ठ पूरे शरीर में ऑक्सीजन युक्त रक्त पंप करता है?',
+        options: ['Right Atrium', 'Right Ventricle', 'Left Atrium', 'Left Ventricle'],
+        optionsHindi: ['दायाँ आलिंद', 'दायाँ निलय', 'बायाँ आलिंद', 'बायाँ निलय'],
+        correctOptionIndex: 3,
+        explanation: 'The left ventricle has thick muscular walls to pump oxygenated blood through the aorta to the body.'
       }
     ]
   },
@@ -347,50 +304,11 @@ const demoData = [
         contentBlocks: [
           {
             type: 'text',
-            content: 'Every composite number can be uniquely expressed (factorised) as a product of primes, apart from the order in which the prime factors occur.',
-            contentHindi: 'प्रत्येक भाज्य संख्या को अभाज्य संख्याओं के एक गुणनफल के रूप में व्यक्त किया जा सकता है, तथा यह गुणनखंडन अद्वितीय होता है।'
+            content: 'Every composite number can be uniquely expressed as a product of primes.',
+            contentHindi: 'प्रत्येक भाज्य संख्या को अभाज्य संख्याओं के एक अद्वितीय गुणनफल के रूप में व्यक्त किया जा सकता है।'
           }
         ],
         order: 1
-      },
-      {
-        lessonNumber: 2,
-        title: 'Finding HCF and LCM by Prime Factorisation',
-        titleHindi: 'अभाज्य गुणनखंडन द्वारा HCF और LCM ज्ञात करना',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'For any two positive integers a and b: HCF(a, b) × LCM(a, b) = a × b. HCF is the product of the smallest power of each common prime factor.',
-            contentHindi: 'किन्हीं दो धनात्मक पूर्णांकों a और b के लिए: HCF(a, b) × LCM(a, b) = a × b होता है।'
-          }
-        ],
-        order: 2
-      },
-      {
-        lessonNumber: 3,
-        title: 'Proofs of Irrational Numbers (√2, √3, √5)',
-        titleHindi: 'अपरिमेय संख्याओं का सत्यापन (√2, √3, √5)',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'Proof by contradiction: We assume √2 is rational (p/q with no common factors) and show that p and q must both be divisible by 2, leading to a contradiction.',
-            contentHindi: 'विरोधाभास द्वारा उपपत्ति: हम मानते हैं कि √2 परिमेय है और सिद्ध करते हैं कि यह धारणा असत्य है।'
-          }
-        ],
-        order: 3
-      },
-      {
-        lessonNumber: 4,
-        title: 'Decimal Expansions of Rational Numbers',
-        titleHindi: 'परिमेय संख्याओं के दशमलव प्रसार',
-        contentBlocks: [
-          {
-            type: 'text',
-            content: 'A rational number p/q has a terminating decimal expansion if the prime factorisation of q is of the form 2ⁿ · 5ᵐ, where n and m are non-negative integers.',
-            contentHindi: 'परिमेय संख्या p/q का दशमलव प्रसार सांत होता है यदि q के अभाज्य गुणनखंड 2ⁿ · 5ᵐ के रूप के हों।'
-          }
-        ],
-        order: 4
       }
     ],
     questions: [
@@ -401,6 +319,14 @@ const demoData = [
         optionsHindi: ['12', '24', '384', '48'],
         correctOptionIndex: 1,
         explanation: 'HCF × LCM = a × b => 4 × LCM = 96 => LCM = 96 / 4 = 24.'
+      },
+      {
+        questionText: 'Which of the following numbers is irrational?',
+        questionTextHindi: 'निम्न में से कौन सी संख्या अपरिमेय है?',
+        options: ['3.14', '√4', '√3', '22/7'],
+        optionsHindi: ['3.14', '√4', '√3', '22/7'],
+        correctOptionIndex: 2,
+        explanation: '√3 cannot be expressed as a fraction of integers p/q, hence it is irrational.'
       }
     ]
   }
@@ -450,7 +376,6 @@ async function seedDatabase() {
             ...lessonData,
             chapterId: chapter._id
           });
-          console.log(`Created Lesson: ${lesson.title}`);
         } else {
           Object.assign(lesson, { ...lessonData, chapterId: chapter._id });
           await lesson.save();
@@ -468,6 +393,7 @@ async function seedDatabase() {
             ...qData,
             chapterId: chapter._id
           });
+          console.log(`Created Question: ${qData.questionText.slice(0, 30)}...`);
         }
       }
     }
