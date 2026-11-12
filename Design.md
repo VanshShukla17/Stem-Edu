@@ -886,3 +886,4 @@ Where:
 3. *On the Moon where gravity is 1/6th of Earth's gravity, the pendulum swings:*
    - Options: `A) Faster`, `B) Slower`, `C) At the same rate`, `D) Backwards`
    - Correct: `B` | Explanation: Since $g$ is in the denominator under the square root, smaller $g$ results in a longer time period $T$, meaning slower oscillations.
+

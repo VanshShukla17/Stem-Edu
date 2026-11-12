@@ -31,23 +31,23 @@ How to use this file:
 
 ## Phase 1: Backend foundation (`backend/`)
 
-- [ ] **1.1 Initialise the Node project**
+- [x] **1.1 Initialise the Node project**
   `npm init`, install `express`, `mongoose`, `dotenv`, `cors`, `nodemon`.
   Done when: `npm run dev` starts a server.
 
-- [ ] **1.2 Basic Express server and health route**
+- [x] **1.2 Basic Express server and health route**
   Create `server.js` with `GET /api/health`.
   Done when: opening the URL returns `{ status: "ok" }`.
 
-- [ ] **1.3 Connect to MongoDB**
+- [x] **1.3 Connect to MongoDB**
   Use MongoDB Atlas free tier; keep the connection string in `.env`.
   Done when: the server logs "DB connected" on start.
 
-- [ ] **1.4 Folder structure**
+- [x] **1.4 Folder structure**
   Create `models/`, `routes/`, `controllers/`, `middleware/`, `utils/`.
   Done when: the folders exist and `server.js` mounts a routes index.
 
-- [ ] **1.5 Central error handler**
+- [x] **1.5 Central error handler**
   Hand-write an error-handling middleware that returns `{ message }` with a proper status code.
   Done when: a thrown error in a test route returns clean JSON, not a stack trace.
 
