@@ -224,26 +224,26 @@ How to use this file:
 
 ## Phase 9: Virtual lab (**NEW: Three.js / 3D in the browser**)
 
-- [ ] **9.1 Learn Three.js basics**
+- [x] **9.1 Learn Three.js basics**
   Practice: scene, camera, renderer, a cube that rotates, then mouse or touch controls.
   Done when: you understand the render loop.
 
-- [ ] **9.2 Pick the v1 experiment**
+- [x] **9.2 Pick the v1 experiment**
   Recommended: a simple pendulum (Physics), because it needs only simple maths.
   Done when: the experiment is written in Design.md with its variables and expected results.
 
-- [ ] **9.3 Build the scene**
+- [x] **9.3 Build the scene**
   Done when: the pendulum swings on screen.
 
-- [ ] **9.4 Add controls**
+- [x] **9.4 Add controls**
   Sliders for length and mass (hand-write the physics maths).
   Done when: changing the length changes the period correctly.
 
-- [ ] **9.5 Instructions and observation quiz**
+- [x] **9.5 Instructions and observation quiz**
   Step list plus 3 to 5 questions scored like MCQs.
   Done when: finishing the lab saves a result.
 
-- [ ] **9.6 Performance and fallback**
+- [x] **9.6 Performance and fallback**
   Test on a mid-range phone; show a message when WebGL is not supported.
   Done when: no crash on unsupported devices.
 

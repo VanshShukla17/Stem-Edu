@@ -40,6 +40,7 @@ export default function App() {
         <Route path="/lessons/:lessonId" element={<LessonReaderPage />} />
         <Route path="/practice/:chapterId" element={<PracticeTestPage />} />
         <Route path="/results" element={<ResultsPage />} />
+        <Route path="/labs" element={<VirtualLabPage />} />
         <Route path="/labs/:labId" element={<VirtualLabPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>

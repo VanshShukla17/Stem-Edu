@@ -97,6 +97,16 @@ export const submitChapterTest = (chapterId, submission) =>
 export const getResults = () => apiRequest('/results');
 export const getResultById = (id) => apiRequest(`/results/${id}`);
 
+// Virtual Labs (Phase 9)
+export const getLabs = (params = {}) => {
+  const queryString = new URLSearchParams(params).toString();
+  return apiRequest(`/labs${queryString ? `?${queryString}` : ''}`);
+};
+export const getLab = (id) => apiRequest(`/labs/${id}`);
+export const submitLabQuiz = (id, submission) =>
+  apiRequest(`/labs/${id}/submit`, { method: 'POST', body: submission });
+export const getMyLabResults = () => apiRequest('/labs/results/me');
+
 export default {
   getHealth,
   signup,
@@ -115,5 +125,9 @@ export default {
   getChapterTest,
   submitChapterTest,
   getResults,
-  getResultById
+  getResultById,
+  getLabs,
+  getLab,
+  submitLabQuiz,
+  getMyLabResults
 };
