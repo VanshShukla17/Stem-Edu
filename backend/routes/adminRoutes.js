@@ -35,3 +35,4 @@ router.get('/users', adminController.getUsers);
 router.put('/users/:id/role', adminController.updateUserRole);
 
 module.exports = router;
+

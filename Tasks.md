@@ -267,21 +267,21 @@ How to use this file:
 
 ## Phase 11: Seed, polish, deploy
 
-- [ ] **11.1 Seed script**
+- [x] **11.1 Seed script**
   One script loads 4 chapters (one per subject), lessons, and 10+ MCQs each. It must be safe to run twice.
   Done when: a fresh database becomes demo-ready with one command.
 
-- [ ] **11.2 Check against PRD section 8**
+- [x] **11.2 Check against PRD section 8**
   Go through all 11 acceptance criteria one by one.
   Done when: every one passes.
 
-- [ ] **11.3 Security pass**
+- [x] **11.3 Security pass**
   No API keys in the frontend, passwords hashed, protected routes tested, `.env` not committed.
   Done when: you can show each item.
 
-- [ ] **11.4 Deploy**
+- [x] **11.4 Deploy**
   Backend on a free host, frontend on a free static host.
   Done when: the public link works on your phone.
 
-- [ ] **11.5 README and demo script**
+- [x] **11.5 README and demo script**
   Done when: someone else can run the project from the README.
