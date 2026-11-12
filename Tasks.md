@@ -55,23 +55,23 @@ How to use this file:
 
 ## Phase 2: Authentication (hand-write)
 
-- [ ] **2.1 User model**
+- [x] **2.1 User model**
   Fields: name, email or phone, passwordHash, role (`student` / `admin`), class, board, language.
   Done when: you can create a user from a test script.
 
-- [ ] **2.2 Signup route**
+- [x] **2.2 Signup route**
   Validate input, hash the password with `bcrypt`, save the user.
   Done when: signing up twice with the same email returns a clear error.
 
-- [ ] **2.3 Login route and JWT**
+- [x] **2.3 Login route and JWT**
   Check the password, return a signed JWT.
   Done when: a wrong password returns 401; a right one returns a token.
 
-- [ ] **2.4 Auth middleware**
+- [x] **2.4 Auth middleware**
   Hand-write `requireAuth` (verify token) and `requireAdmin` (role check).
   Done when: a protected test route rejects missing, invalid and non-admin tokens.
 
-- [ ] **2.5 Profile routes**
+- [x] **2.5 Profile routes**
   `GET /api/me` and `PUT /api/me` (change class, board, language).
   Done when: updating the class changes what `GET /api/me` returns.
 
